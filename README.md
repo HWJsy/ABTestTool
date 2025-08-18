@@ -1,24 +1,24 @@
 # ABTestTool 使用文档
 
 ## 1. 使用流程概述
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 ## 2. “文件”菜单栏
-![alt text](image.png)
+![alt text](images/image.png)
 ### 2.1 新建
 点击后，在弹窗中，选择保存文件夹，输入文件名。新建的文件会被保存为 `[文件名].redabproj` 文件
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 ### 2.2 打开
 点击后，选择并打开一个 `.redabproj` 文件。其他类型的文件无法被选择。
-![alt text](image-3.png)
+![alt text](images/image-3.png)
 ### 2.3 工程设置
 点击“cpp导出路径”后，在弹窗中选择导出cpp代码的路径
-![alt text](image-4.png)
+![alt text](images/image-4.png)
 ### 2.4 导出
 点击“导出”或按下快捷键 `option + commond + s` 将版本管理模块中的最新版本导出为cpp代码，导出的文件为 `ABTest.hpp` 和 `ABTest.cpp`。
 
 ## 3. 功能开关模块
 - 功能开关为程序在业务逻辑中实现测试分支的判断条件  
-![alt text](image-5.png)
+![alt text](images/image-5.png)
 功能名称：描述该功能的作用  
 函数名称：导出的代码中该功能对应的函数名  
 返回类型：该功能对应的函数的返回类型  
@@ -28,7 +28,7 @@
 ### 3.1 新建功能
 | 返回类型为 bool | 返回类型为非 bool |
 | --------------- | ------------------ |
-| ![alt text](image-6.png)<br/>返回类型为 **bool** | ![alt text](image-7.png)<br/>返回类型为 **非bool** |
+| ![alt text](images/image-6.png)<br/>返回类型为 **bool** | ![alt text](images/image-7.png)<br/>返回类型为 **非bool** |
 
 
 - 新建功能时，输入的“功能名称”与“函数名称”不可为空、不可与已有的功能重复
@@ -40,7 +40,7 @@
   - “Value”的值需要满足返回值类型
 
 ### 3.2 设置分组互斥开关
-![alt text](image-8.png)
+![alt text](images/image-8.png)
 - 互斥开关的作用：当多个功能使用同一个互斥开关时，在同一个分组中，这几个功能至多只能有一个处于开启状态。
 - 添加互斥开关：  
   - 输入互斥开关的名称，点击“确定”按钮即可创建一个互斥开关。  
@@ -52,7 +52,7 @@
 
 | 返回类型为 bool | 返回类型为非 bool |
 | --------------- | ------------------ |
-| ![alt text](image-9.png)<br/>返回类型为 **bool** | ![alt text](image-10.png)<br/>返回类型为 **非bool** |
+| ![alt text](images/image-9.png)<br/>返回类型为 **bool** | ![alt text](images/image-10.png)<br/>返回类型为 **非bool** |
 
 - 在弹窗中，可以修改功能名和默认值
 - 返回类型为bool时，可以选择是否设置互斥开关
@@ -63,7 +63,7 @@
 
 ## 4. 分组管理模块
 - 管理每个分组开启哪些功能
-![alt text](image-11.png)
+![alt text](images/image-11.png)
 ### 4.1 新建分组
 - 点击按钮后在弹窗中输入组描述即可新建分组
 - 新建的分组的各个功能的返回值为各自的默认值
@@ -75,7 +75,7 @@
 
 | 返回类型为 bool | 返回类型为非 bool |
 | --------------- | ------------------ |
-| ![alt text](image-12.png)<br/>返回类型为 **bool** | ![alt text](image-13.png)<br/>返回类型为 **非bool** |
+| ![alt text](images/image-12.png)<br/>返回类型为 **bool** | ![alt text](images/image-13.png)<br/>返回类型为 **非bool** |
 
 - 对于返回值类型为bool的，双击的结果是将其由“关闭”转为“开启”或由“开启”转为“关闭”。
 - 对于返回值类型不为bool的：  
@@ -85,7 +85,7 @@
 
 ## 5. 版本管理模块
 - 管理版本开启哪些分组，以及新用户分配分组时的权重
-![alt text](image-14.png)
+![alt text](images/image-14.png)
 ### 5.1 添加版本
 点击左上角“添加版本”按钮，输入版本号和版本描述即可创建一个版本
 
@@ -103,11 +103,11 @@
 双击某一个分组会弹出相应的编辑窗口  
 - 当该版本处于平均权重模式时，双击的结果是简单的修改是否启用该分组  
 - 当该版本处于非平均权重模式时，在弹窗中可以勾选“是否启用分组”，如果启用了该分组，那么还需要输入其权重  
-![alt text](image-15.png)![alt text](image-16.png)|
+![alt text](images/image-15.png)![alt text](images/image-16.png)|
 
 ## 6. 分组更新模块
 - 老用户更新时，弃用老的分组，给老用户一个分组映射关系
-![alt text](image-17.png)
+![alt text](images/image-17.png)
 - 该模块可以将一个分组映射到另一个分组。
 - 左侧表格中是目前已有的映射，右侧表格中是最终的映射。导出时只会导出右侧表格中的最终映射规则
 - 无论是在新建映射还是在编辑映射时，都不能：  
@@ -117,10 +117,10 @@
 
 ### 6.1 新建映射
 点击“新建映射”按钮，选择原始分组和映射分组，即可创建一个映射
-![alt text](image-18.png)
+![alt text](images/image-18.png)
 ### 6.2 编辑映射
 双击左侧表格的任意一行会弹出该行的编辑弹窗
-![alt text](image-19.png)
+![alt text](images/image-19.png)
 ## 7. 导出代码的使用
 
 ### 7.1 获取用户初始分组，传递给统计工具
