@@ -15,6 +15,8 @@ NewMutexSwitchWindow::NewMutexSwitchWindow(QWidget *parent)
     , ui(new Ui::NewMutexSwitchWindow)
 {
     ui->setupUi(this);
+    QStandardItemModel *model = new QStandardItemModel();
+    ui->tableViewMutexSwitch->setModel(model);
     refresh();
     ui->tableViewMutexSwitch->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(ui->tableViewMutexSwitch, &QTableView::doubleClicked, this, &NewMutexSwitchWindow::onCellDoubleClicked);
@@ -86,7 +88,7 @@ void NewMutexSwitchWindow::refresh()
     QList<MutexSwitchData>& mutexSwitches = FunctionDataManager::getInstance().getMutexSwitches();
 
     // 清空现有的模型数据
-    QStandardItemModel *model = new QStandardItemModel();
+    QStandardItemModel *model = qobject_cast<QStandardItemModel*>(ui->tableViewMutexSwitch->model());
     model->setColumnCount(1);  // 只有一列
     model->setHorizontalHeaderLabels({"互斥开关"});  // 设置列头
 
@@ -96,7 +98,6 @@ void NewMutexSwitchWindow::refresh()
         QStandardItem *item = new QStandardItem(mutexSwitch.description);
         model->appendRow(item);
     }
-    ui->tableViewMutexSwitch->setModel(model);
     ui->tableViewMutexSwitch->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
 }
 

@@ -387,14 +387,13 @@ void FunctionToggleWindow::onCellDoubleClicked(const QModelIndex &index)
                         rowData.keyValuePairs[rowData.keyValuePairs.size()] = std::pair(key, value);
                         comboBoxValue->addItem(key);
                         // 更新 tableView
-                        QStandardItemModel *keyValueModel = new QStandardItemModel(rowData.keyValuePairs.size(), 2, this);
+                        QStandardItemModel *keyValueModel = qobject_cast<QStandardItemModel*>(keyValueTableView->model());
                         int rowIndex = 0;
                         for(int id = 0; id < rowData.keyValuePairs.size(); id++) {
                             keyValueModel->setItem(rowIndex, 0, new QStandardItem(rowData.keyValuePairs[id].first));
                             keyValueModel->setItem(rowIndex, 1, new QStandardItem(rowData.keyValuePairs[id].second));
                             rowIndex++;
                         }
-                        keyValueTableView->setModel(keyValueModel);
 
                         inputDialog.accept();
                     } else {

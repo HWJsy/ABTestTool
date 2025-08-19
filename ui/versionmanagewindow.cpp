@@ -20,6 +20,10 @@ VersionManageWindow::VersionManageWindow(QWidget *parent)
     ui->tableViewVersionList->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     connect(ui->tableViewVersionList, &QTableView::doubleClicked, this, &VersionManageWindow::onCellDoubleClicked);
+
+    QStandardItemModel *model = new QStandardItemModel();
+    ui->tableViewVersionList->setModel(model);
+
     ui->pushButtonCreateVersion->installEventFilter(this);
     ui->tableViewVersionList->installEventFilter(this);
     totalWeightsOver1 = false;
@@ -59,10 +63,7 @@ bool VersionManageWindow::eventFilter(QObject *watched, QEvent *event)
 
 void VersionManageWindow::refresh()
 {
-    // 清空当前表格的模型
-    QStandardItemModel *model = new QStandardItemModel();
-    ui->tableViewVersionList->setModel(model);  // 重新设置模型
-
+    QStandardItemModel *model = qobject_cast<QStandardItemModel*>(ui->tableViewVersionList->model());
 
     TopLevelManager::getInstance().loadData();
 
@@ -177,9 +178,6 @@ void VersionManageWindow::refresh()
 
     // 隐藏行号
     ui->tableViewVersionList->verticalHeader()->setVisible(false);
-
-    // 设置新的模型到视图
-    ui->tableViewVersionList->setModel(model);
 }
 
 void VersionManageWindow::onCellDoubleClicked(const QModelIndex &index)

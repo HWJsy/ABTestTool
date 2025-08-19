@@ -65,9 +65,6 @@ FORMS += \
     ui/projsetting.ui \
     ui/versionmanagewindow.ui
 
-RESOURCES += \
-    resources.qrc
-
 # Include template files in the app bundle
 macx:QMAKE_BUNDLE_DATA += templateFolder
 templateFolder.files = $$files($$PWD/template/*)

@@ -14,6 +14,8 @@ GroupManageWindow::GroupManageWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle("分组管理模块");
+    QStandardItemModel *model = new QStandardItemModel();
+    ui->tableViewGroupList->setModel(model);
     ui->tableViewGroupList->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(ui->tableViewGroupList, &QTableView::doubleClicked, this, &GroupManageWindow::onCellDoubleClicked);
     ui->pushButtonCreateGroup->installEventFilter(this);
@@ -58,9 +60,7 @@ bool GroupManageWindow::eventFilter(QObject *watched, QEvent *event)
 
 void GroupManageWindow::refresh()
 {
-    // 清空当前表格的模型
-    QStandardItemModel *model = new QStandardItemModel();
-    ui->tableViewGroupList->setModel(model);  // 重新设置模型
+    QStandardItemModel *model = qobject_cast<QStandardItemModel*>(ui->tableViewGroupList->model());
 
     TopLevelManager::getInstance().loadData();
 
@@ -116,9 +116,6 @@ void GroupManageWindow::refresh()
 
     // 隐藏行号
     ui->tableViewGroupList->verticalHeader()->setVisible(false);
-
-    // 设置新的模型到视图
-    ui->tableViewGroupList->setModel(model);
 }
 
 void GroupManageWindow::onCellDoubleClicked(const QModelIndex &index)
